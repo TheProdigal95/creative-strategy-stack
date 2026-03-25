@@ -56,6 +56,11 @@ Scrapes all active ads for a brand, downloads the media, and optionally analyzes
 
 Builds image prompts that produce visuals looking like magazine content, not ads.
 
+**Scrape product reviews:**
+> "/review-scraper" then give it a product page URL
+
+Detects the review platform (Yotpo, Junip, Okendo, Stamped, Trustpilot, Loox, Judge.me), writes a scraper, and pulls all reviews into structured JSONL. Works for your brand and competitors.
+
 **Quick Reddit scrape (lightweight):**
 > "Scrape this Reddit thread: [URL]"
 
@@ -75,6 +80,7 @@ creative-strategy-stack/
 │   ├── listicle-writer/          # Research-driven listicle landing pages
 │   ├── editorial-image-prompts/  # Editorial-style image generation prompts
 │   ├── story-selling/            # Meta ad scripts where the story earns the sale
+│   ├── review-scraper/           # Scrape reviews from any ecommerce site
 │   ├── critique/                 # Score any work against a chosen framework
 │   └── gemini-api/               # Google Gemini for images, video, text
 │
@@ -101,6 +107,8 @@ creative-strategy-stack/
 **Research Engine** — You give it a brand and a direction ("gut health for backyard chickens"). It goes to Reddit, finds every relevant conversation, extracts the evidence, scores it against your brand, groups it into themes, and comes back with 20-40 structured insights plus a report on how the audience actually talks. Takes 7-25 minutes. No API key needed — it runs on your Claude Code session.
 
 **Reddit Scraper** — A much simpler version. Give it a Reddit URL, get back the posts and comments as structured data. Takes seconds. Use this when you already know which threads matter and just need the text.
+
+**Review Scraper** — Give it any product page URL and it figures out which review platform the site uses (Yotpo, Junip, Okendo, Stamped.io, Trustpilot, Loox, or Judge.me), writes a scraper for that platform, and pulls every review into structured data. Always scrape both your brand's reviews AND competitor reviews — the cross-brand comparison is where the real patterns show up.
 
 **Ad Library** — Scrapes Meta's Ad Library for any brand's active ads. Can process 10-20 brands in a batch. Downloads all the images and videos, and optionally runs Gemini visual analysis on every creative to break down messaging angles, visual patterns, and scripts.
 
@@ -132,6 +140,25 @@ It walks you through 4 gates with approval at each step. The output is a complet
 
 **Transcribe** — Routes video/audio to either local MLX (free, Apple Silicon) or Gemini (any platform). Use MLX for speech-to-text, Gemini when you need visual context like on-screen captions.
 
+### Quick reference
+
+| Tool | What it does | Invoke with |
+|------|-------------|-------------|
+| Research Engine | 12-step Reddit research pipeline — insights, themes, language patterns | `"Run a research sprint for [brand] on [topic]"` |
+| Review Scraper | Pull reviews from any ecommerce site (7 platforms) | `/review-scraper` or `"Scrape reviews from [URL]"` |
+| Reddit Scraper | Quick Reddit post/comment extraction | `"Scrape this Reddit thread: [URL]"` |
+| Ad Library | Batch scrape Meta Ad Library for competitor creative | `/ad-library` |
+| Statics Briefer | Static ad briefs with TEEP + Three Selves + Emotional Zones | `/statics-briefer` |
+| Native Ad Creative | Native ad headlines + image direction | `/native-ad-creative` |
+| Listicle Writer | Landing page listicles (9-gate workflow) | `/listicle-writer` |
+| Editorial Image Prompts | Image prompts that look like magazine content | `/editorial-image-prompts` |
+| Story-Selling | Meta ad scripts where the story earns the sale | `/story-selling` |
+| Critique | Score any work against a chosen framework | `/critique` |
+| Gemini API | Video analysis, image generation, image analysis | `/gemini-api` |
+| Transcribe | Video/audio transcription (local or cloud) | `/transcribe` |
+
+**You don't need to memorize any of this.** Just describe what you need in plain English — "scrape reviews from this competitor," "write briefs for these three angles," "pull ads from these brands" — and Claude will pick the right tool and walk you through it.
+
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) (CLI) — the environment everything runs in
@@ -159,7 +186,6 @@ Then open a pull request on GitHub. Changes go into main after review and approv
 
 This is a working system that's actively evolving. Known areas for improvement:
 
-- **`statics-briefer` needs updating** — The frameworks are solid, but the gate flow needs to be brought in line with the latest process.
+- **`statics-briefer` needs a major update** — The three frameworks (TEEP, Three Selves, Emotional Zones) are solid, but the entire brief format and end product have evolved significantly since this skill was written. The gate flow, output structure, and what a finished brief looks like have all changed. The skill works but produces an older format.
 - **UGC briefing skill** — Story-selling covers the philosophy, but there's no dedicated skill yet for the full UGC creator package (hooks, b-roll shot lists, emotional arc checks).
-- **Review scraping** — Currently manual. A tool for pulling and organizing brand + competitor reviews would close the loop on research.
 - **Testing strategy skill** — The process for ranking angles by data strength isn't encoded as a skill yet.
