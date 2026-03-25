@@ -4,7 +4,25 @@ A complete creative strategy system for DTC brands, built around Claude Code.
 
 Takes you from "new brand, zero creative" to a full pipeline of static ads, UGC video briefs, listicles, and ongoing test batches — all grounded in real customer language, not assumptions.
 
-## Quick Start
+---
+
+## What is this?
+
+This is a shared workspace that lives inside [Claude Code](https://claude.ai/code) — Anthropic's CLI for working with Claude directly in your terminal. When you open this folder in Claude Code, it automatically loads context about the tools, frameworks, and workflows available to you. You type what you need in plain English, and the system handles the rest.
+
+Everything here is built around one idea: **the customer's own language is the best source material for ads.** The tools research how real people talk about their problems, and the skills turn that language into strategic creative briefs.
+
+## Prerequisites
+
+You need two things before setup:
+
+1. **Claude Code** — Install from [claude.ai/code](https://claude.ai/code). This is the environment everything runs in. If you've never used it: it's a terminal app where you talk to Claude and it can read files, run scripts, and use tools on your behalf.
+
+2. **A terminal** — On Mac, open Terminal (or iTerm). Claude Code runs here.
+
+Everything else (Node.js, Python, Homebrew, dependencies) gets installed automatically by the setup script.
+
+## Setup
 
 ```bash
 git clone https://github.com/TheProdigal95/creative-strategy-stack.git
@@ -12,59 +30,136 @@ cd creative-strategy-stack
 ./setup.sh
 ```
 
-The setup script handles everything: checks for Node.js and Python (installs them if missing), installs all dependencies, copies skills and commands into your Claude Code config, wires up the Research Engine as an MCP server, and prompts you for API keys. After that, open the folder in Claude Code and the `CLAUDE.md` loads automatically with the full reference.
+The setup script walks you through everything:
+- Installs Node.js and Python if you don't have them (via Homebrew — installs that too if needed)
+- Installs all tool dependencies
+- Copies the AI skills and commands into your Claude Code config
+- Wires up the Research Engine as a background service
+- Prompts you for two API keys (Gemini and Apify — it tells you where to get them)
 
-## What's Inside
+After setup, open the folder in Claude Code:
+
+```bash
+cd creative-strategy-stack
+claude
+```
+
+That's it. Claude now has access to everything.
+
+## What to try first
+
+Once you're in Claude Code, try these to get a feel for the system:
+
+**Research a new brand:**
+> "Create a brand called pure-plank. Here's the product info: [paste product description, website copy, or messy notes]"
+
+Claude sets up the brand and you can immediately run research sprints on it.
+
+**Run a Reddit research sprint:**
+> "Run a research sprint for pure-plank on 'back pain from desk jobs'"
+
+This kicks off the 12-step Research Engine. It scrapes Reddit, extracts evidence, discovers themes, and comes back 7-25 minutes later with structured insights and customer language.
+
+**Write static ad briefs:**
+> "/statics-briefer" then provide your angles and voice of customer data
+
+The skill walks you through 4 gates — stage, format, headlines, designer guidance — using three psychological frameworks to shape every brief.
+
+**Pull competitor ads:**
+> "/ad-library" then paste a Meta Ad Library URL
+
+Scrapes all active ads for a brand, downloads the media, and optionally analyzes every creative with Gemini.
+
+**Generate editorial images:**
+> "/editorial-image-prompts" then describe what you need
+
+Builds image prompts that produce visuals looking like magazine content, not ads.
+
+**Quick Reddit scrape (lightweight):**
+> "Scrape this Reddit thread: [URL]"
+
+Uses the lightweight scraper — faster and cheaper than the full Research Engine, gives you raw posts and comments.
+
+## What's inside
+
+```
+creative-strategy-stack/
+├── CLAUDE.md                     # Auto-loaded context — setup guide + workflow reference
+├── setup.sh                      # One-command installer
+├── .env.example                  # API key template
+│
+├── skills/                       # AI workflows (copied to ~/.claude/skills/ during setup)
+│   ├── statics-briefer/          # Static ad briefs — TEEP + Three Selves + Emotional Zones
+│   ├── native-ad-creative/       # Native ad headlines + image direction
+│   ├── listicle-writer/          # Research-driven listicle landing pages
+│   ├── editorial-image-prompts/  # Editorial-style image generation prompts
+│   ├── story-selling/            # Meta ad scripts where the story earns the sale
+│   ├── critique/                 # Score any work against a chosen framework
+│   └── gemini-api/               # Google Gemini for images, video, text
+│
+├── commands/                     # Claude Code commands (copied to ~/.claude/commands/)
+│   ├── ad-library.md             # Meta Ad Library scraping pipeline
+│   └── transcribe.md             # Video/audio transcription routing
+│
+├── tools/                        # Backend scripts the skills and commands call
+│   ├── ad-library/               # Scrape, download, analyze, batch, cleanup
+│   ├── gemini-api/               # Universal Gemini API wrapper
+│   ├── reddit-scraper.js         # Lightweight Reddit scraping (fast, low-token)
+│   └── mlx-transcribe.py         # Local video transcription (Apple Silicon only)
+│
+└── research-engine/              # 12-step Reddit research pipeline + MCP server
+    ├── engine/                   # The pipeline steps
+    ├── brands/                   # Your brand data (created as you work, not shared)
+    └── requirements.txt          # Python dependencies
+```
+
+## The tools in plain English
 
 ### Research
 
-Two tools for gathering customer language — one deep, one fast.
+**Research Engine** — You give it a brand and a direction ("gut health for backyard chickens"). It goes to Reddit, finds every relevant conversation, extracts the evidence, scores it against your brand, groups it into themes, and comes back with 20-40 structured insights plus a report on how the audience actually talks. Takes 7-25 minutes. No API key needed — it runs on your Claude Code session.
 
-**Research Engine** — A 12-step Python pipeline that scrapes Reddit, extracts evidence, discovers themes, scores brand fit, and mines language patterns. Runs as an MCP server inside Claude Code. You tell it a brand and a research direction ("gut health for backyard chickens"), it comes back 7-25 minutes later with 20-40 structured insights, evidence counts, VoC quotes, and a language report showing how the audience actually talks. Uses your Claude Code session for auth — no separate API key.
+**Reddit Scraper** — A much simpler version. Give it a Reddit URL, get back the posts and comments as structured data. Takes seconds. Use this when you already know which threads matter and just need the text.
 
-**Reddit Scraper (Lightweight)** — A single Node.js script that pulls posts and comments from specific Reddit threads or subreddits via Apify. Much faster, uses far fewer tokens, but gives you raw data instead of structured analysis. Use this when you already know which threads matter and just need the text.
+**Ad Library** — Scrapes Meta's Ad Library for any brand's active ads. Can process 10-20 brands in a batch. Downloads all the images and videos, and optionally runs Gemini visual analysis on every creative to break down messaging angles, visual patterns, and scripts.
 
-### Creative Skills
+### Creative
 
-Seven structured AI workflows, each invoked from Claude Code with `/skill-name`:
+**Statics Briefer** — The most complex skill. Produces creative briefs for static ads using three psychological frameworks simultaneously:
 
-| Skill | When to use it |
-|-------|----------------|
-| `/statics-briefer` | Writing creative briefs for static ads. Uses three psychological frameworks simultaneously — see below. |
-| `/native-ad-creative` | Native advertising headlines + image direction. Direct response psychology with 7 angle types. |
-| `/listicle-writer` | Landing page listicles where each numbered point is a sales argument. 9-gate workflow from research to imagery. |
-| `/editorial-image-prompts` | Image generation prompts that produce editorial-quality visuals — images that look like magazine content, not ads. |
-| `/story-selling` | Meta ad scripts (UGC, testimonials) where the story earns the sale. Covers curiosity gaps, contrast, and product integration. |
-| `/critique` | Evaluate any creative output against a chosen skill or framework. Scores each dimension 1-10 with specific fixes. |
-| `/gemini-api` | Google Gemini for video analysis, image generation, image analysis, and text generation. |
+| Framework | What it decides |
+|-----------|----------------|
+| **TEEP** (Trigger, Exploration, Evaluation, Purchase) | Where the buyer is in their journey |
+| **Three Selves** (Actual, Ideal, Ought) | Which version of the buyer we're speaking to |
+| **Emotional Zones** (Valence x Intensity) | What emotional state they're in and where the ad takes them |
 
-### Competitive Intelligence
+It walks you through 4 gates with approval at each step. The output is a complete brief a designer can execute — strategy notes, image directions, headlines grouped by psychological type, subheadings, and compliance guardrails.
 
-| Tool | What it does |
-|------|-------------|
-| `/ad-library` | Batch scrape Meta Ad Library for 10-20 brands at once. Downloads media, optional Gemini visual analysis for full creative breakdowns. |
-| `/transcribe` | Transcribe video/audio — routes to local MLX (free, Apple Silicon) or Gemini API (any platform, detailed visual context). |
+**Native Ad Creative** — Headlines and image direction for native advertising. Uses 7 psychological angles (curiosity gap, enemy framing, authority, social proof, contrarian, fear + discovery, identity filtering). Philosophy: copy sells, design gets in the way.
 
-## Three Frameworks in Every Static Brief
+**Listicle Writer** — 9-gate workflow that produces landing page listicles where each numbered point is a sales argument, not just education. Built around a unifying theme with research at every step.
 
-The `/statics-briefer` skill makes three simultaneous strategic decisions for each ad. These aren't separate tools — they work together to determine the tone, pressure, and emotional arc.
+**Story-Selling** — Framework for writing Meta ad scripts where the story earns the sale. Covers how to find the "one row" in a transformation, curiosity gaps, contrast, and how to bring the product in without killing trust.
 
-| Framework | What it decides | Example |
-|-----------|----------------|---------|
-| **TEEP** (Trigger, Exploration, Evaluation, Purchase) | Where the buyer is in their journey | Trigger = something just happened. Evaluation = she's comparing products. |
-| **Three Selves** (Actual, Ideal, Ought) | Which version of the buyer we're speaking to | Ought = "you should." Actual = "you're not wrong." Ideal = "the person who..." |
-| **Emotional Zones** (Valence x Intensity) | What emotional state the buyer is in, and where the ad takes them | Zone 3 (quiet frustration) → Zone 1 (calm relief) |
+**Editorial Image Prompts** — Generates image prompts that produce visuals looking like they belong in magazines or journals, not ad creative. 9 style options, 7-layer prompt architecture.
 
-The ratio of Selves and the emotional journey are deliberate strategic decisions per brief, not random choices. The skill guides you through this at each gate.
+**Critique** — A meta-skill. Pick any other skill or framework, and this one evaluates work against it. Scores each dimension 1-10 with specific feedback and fixes.
+
+### Utility
+
+**Gemini API** — Google Gemini for things Claude can't do natively: video analysis, image generation, image analysis. Works as both a skill and a CLI tool.
+
+**Transcribe** — Routes video/audio to either local MLX (free, Apple Silicon) or Gemini (any platform). Use MLX for speech-to-text, Gemini when you need visual context like on-screen captions.
 
 ## Requirements
 
-- [Claude Code](https://claude.ai/code) (CLI)
-- Node.js v18+ (setup script installs via Homebrew if missing)
-- Python 3.10+ (setup script installs if missing)
-- Google Gemini API key — [Get one here](https://aistudio.google.com/apikey)
-- Apify account — [Sign up here](https://apify.com/) (for Meta Ad Library + Reddit scraping)
-- (Optional) Apple Silicon Mac for free local MLX transcription
+- [Claude Code](https://claude.ai/code) (CLI) — the environment everything runs in
+- macOS, Linux, or WSL (Claude Code requirement)
+- Google Gemini API key — [get one here](https://aistudio.google.com/apikey) (free tier available)
+- Apify account — [sign up here](https://apify.com/) (for Ad Library + Reddit scraping)
+- (Optional) Apple Silicon Mac for free local video transcription
+
+Node.js, Python, Homebrew, and all other dependencies are handled by `setup.sh`.
 
 ## Contributing
 
@@ -83,7 +178,7 @@ Then open a pull request on GitHub. Changes go into main after review and approv
 
 This is a working system that's actively evolving. Known areas for improvement:
 
-- **`statics-briefer` needs updating** — The skill encodes an earlier version of the workflow. The frameworks (TEEP, Three Selves, Emotional Zones) are solid, but the gate flow and some execution details need to be brought in line with the latest process. If you're using it and something feels off, that's why.
-- **UGC briefing skill** — Story-selling covers the philosophy, but there's no dedicated skill yet for the full UGC creator package workflow (hooks, b-roll shot lists, emotional arc checks).
-- **Review scraping** — Currently manual. A structured skill or tool for pulling and organizing brand + competitor reviews would close the loop on the research side.
-- **Testing strategy skill** — The process for ranking angles by data strength and writing testing strategies is documented but not yet encoded as a skill.
+- **`statics-briefer` needs updating** — The frameworks are solid, but the gate flow needs to be brought in line with the latest process.
+- **UGC briefing skill** — Story-selling covers the philosophy, but there's no dedicated skill yet for the full UGC creator package (hooks, b-roll shot lists, emotional arc checks).
+- **Review scraping** — Currently manual. A tool for pulling and organizing brand + competitor reviews would close the loop on research.
+- **Testing strategy skill** — The process for ranking angles by data strength isn't encoded as a skill yet.
