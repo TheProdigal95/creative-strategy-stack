@@ -90,7 +90,7 @@ cd "$REPO_DIR"
 echo ""
 echo "Installing Research Engine dependencies..."
 
-pip3 install -q -r "$REPO_DIR/research-engine/requirements.txt" 2>/dev/null
+pip3 install -q -r "$REPO_DIR/tools/research-engine/requirements.txt" 2>/dev/null
 echo -e "${GREEN}[OK]${NC} Research Engine Python packages installed"
 
 # -------------------------------------------------------------------
@@ -115,7 +115,7 @@ echo "Configuring Research Engine MCP server..."
 
 MCP_CONFIG="$HOME/.mcp.json"
 PYTHON_PATH=$(which python3)
-MCP_SERVER_PATH="$REPO_DIR/research-engine/engine/mcp_server.py"
+MCP_SERVER_PATH="$REPO_DIR/tools/research-engine/engine/mcp_server.py"
 
 if [ -f "$MCP_CONFIG" ]; then
     # Check if research-engine is already configured

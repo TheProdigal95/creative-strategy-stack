@@ -92,12 +92,11 @@ creative-strategy-stack/
 │   ├── ad-library/               # Scrape, download, analyze, batch, cleanup
 │   ├── gemini-api/               # Universal Gemini API wrapper
 │   ├── reddit-scraper.js         # Lightweight Reddit scraping (fast, low-token)
-│   └── mlx-transcribe.py         # Local video transcription (Apple Silicon only)
-│
-└── research-engine/              # 12-step Reddit research pipeline + MCP server
-    ├── engine/                   # The pipeline steps
-    ├── brands/                   # Your brand data (created as you work, not shared)
-    └── requirements.txt          # Python dependencies
+│   ├── mlx-transcribe.py         # Local video transcription (Apple Silicon only)
+│   └── research-engine/          # 12-step Reddit research pipeline + MCP server
+│       ├── engine/               # The pipeline steps
+│       ├── brands/               # Your brand data (created as you work, not shared)
+│       └── requirements.txt      # Python dependencies
 ```
 
 ## The tools in plain English

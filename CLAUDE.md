@@ -115,7 +115,7 @@ The Research Engine is a 12-step Python pipeline that scrapes Reddit, extracts e
 
 **Output:** `insights_final.csv` (20-40 structured insights with evidence counts, VoC quotes, persona assignments) + `language_report.json` (how the audience actually talks).
 
-See `research-engine/README.md` for full documentation.
+See `tools/research-engine/README.md` for full documentation.
 
 ---
 

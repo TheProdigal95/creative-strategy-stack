@@ -15,8 +15,8 @@ downloads/
 analysis/
 
 # Research Engine brand data (per-user)
-research-engine/brands/*/
-!research-engine/brands/.gitkeep
+tools/research-engine/brands/*/
+!tools/research-engine/brands/.gitkeep
 
 # Research Engine databases
 *.sqlite
