@@ -51,7 +51,25 @@ else
 fi
 
 # -------------------------------------------------------------------
-# 2. Install npm dependencies
+# 2. Check for Python 3
+# -------------------------------------------------------------------
+if command -v python3 &> /dev/null; then
+    PY_VERSION=$(python3 --version)
+    echo -e "${GREEN}[OK]${NC} $PY_VERSION found"
+else
+    echo -e "${YELLOW}[!]${NC} Python 3 not found."
+    if command -v brew &> /dev/null; then
+        echo "    Installing Python 3 via Homebrew..."
+        brew install python
+        echo -e "${GREEN}[OK]${NC} $(python3 --version) installed"
+    else
+        echo -e "${RED}[ERROR]${NC} Please install Python 3: https://www.python.org/downloads/"
+        exit 1
+    fi
+fi
+
+# -------------------------------------------------------------------
+# 3. Install npm dependencies
 # -------------------------------------------------------------------
 echo ""
 echo "Installing tool dependencies..."
@@ -67,7 +85,16 @@ echo -e "${GREEN}[OK]${NC} Gemini API tools installed"
 cd "$REPO_DIR"
 
 # -------------------------------------------------------------------
-# 3. Copy skills and commands to Claude Code config
+# 4. Install Research Engine Python dependencies
+# -------------------------------------------------------------------
+echo ""
+echo "Installing Research Engine dependencies..."
+
+pip3 install -q -r "$REPO_DIR/research-engine/requirements.txt" 2>/dev/null
+echo -e "${GREEN}[OK]${NC} Research Engine Python packages installed"
+
+# -------------------------------------------------------------------
+# 5. Copy skills and commands to Claude Code config
 # -------------------------------------------------------------------
 echo ""
 echo "Installing skills and commands into Claude Code..."
@@ -81,7 +108,55 @@ cp -r "$REPO_DIR/commands/"* ~/.claude/commands/
 echo -e "${GREEN}[OK]${NC} Commands installed ($(ls commands/*.md | wc -l | tr -d ' ') commands)"
 
 # -------------------------------------------------------------------
-# 4. Set up API keys
+# 6. Configure Research Engine as MCP server
+# -------------------------------------------------------------------
+echo ""
+echo "Configuring Research Engine MCP server..."
+
+MCP_CONFIG="$HOME/.mcp.json"
+PYTHON_PATH=$(which python3)
+MCP_SERVER_PATH="$REPO_DIR/research-engine/engine/mcp_server.py"
+
+if [ -f "$MCP_CONFIG" ]; then
+    # Check if research-engine is already configured
+    if grep -q "research-engine" "$MCP_CONFIG" 2>/dev/null; then
+        echo -e "${GREEN}[OK]${NC} Research Engine MCP already configured"
+    else
+        # Add research-engine to existing config
+        # Use Python to safely merge JSON
+        python3 -c "
+import json, sys
+with open('$MCP_CONFIG') as f:
+    config = json.load(f)
+if 'mcpServers' not in config:
+    config['mcpServers'] = {}
+config['mcpServers']['research-engine'] = {
+    'command': '$PYTHON_PATH',
+    'args': ['$MCP_SERVER_PATH']
+}
+with open('$MCP_CONFIG', 'w') as f:
+    json.dump(config, f, indent=2)
+print('Added research-engine to existing .mcp.json')
+"
+        echo -e "${GREEN}[OK]${NC} Research Engine added to MCP config"
+    fi
+else
+    # Create new .mcp.json
+    cat > "$MCP_CONFIG" << MCPEOF
+{
+  "mcpServers": {
+    "research-engine": {
+      "command": "$PYTHON_PATH",
+      "args": ["$MCP_SERVER_PATH"]
+    }
+  }
+}
+MCPEOF
+    echo -e "${GREEN}[OK]${NC} MCP config created at $MCP_CONFIG"
+fi
+
+# -------------------------------------------------------------------
+# 7. Set up API keys
 # -------------------------------------------------------------------
 echo ""
 echo "Setting up API keys..."
@@ -130,7 +205,7 @@ else
 fi
 
 # -------------------------------------------------------------------
-# 5. Check for optional dependencies
+# 8. Check for optional dependencies
 # -------------------------------------------------------------------
 echo ""
 echo "Checking optional dependencies..."
@@ -164,21 +239,37 @@ echo "=================================="
 echo -e " ${GREEN}Setup complete!${NC}"
 echo "=================================="
 echo ""
+echo " What was installed:"
+echo "   - 7 AI skills → ~/.claude/skills/"
+echo "   - 2 commands → ~/.claude/commands/"
+echo "   - Ad Library tools (Node.js)"
+echo "   - Gemini API tools (Node.js)"
+echo "   - Research Engine (Python, MCP server)"
+echo ""
 echo " Next steps:"
 echo "   1. Open this folder in Claude Code"
 echo "   2. Read how-i-work.md for the full process"
 echo "   3. Try: /statics-briefer, /native-ad-creative, /listicle-writer"
 echo ""
 echo " Available skills:"
-echo "   /statics-briefer        — Static ad briefs (TEEP + Selves + Zones)"
-echo "   /native-ad-creative     — Native ad headlines + image direction"
-echo "   /listicle-writer        — Research-driven listicle landing pages"
+echo "   /statics-briefer         — Static ad briefs (TEEP + Selves + Zones)"
+echo "   /native-ad-creative      — Native ad headlines + image direction"
+echo "   /listicle-writer         — Research-driven listicle landing pages"
 echo "   /editorial-image-prompts — Editorial-style image prompts"
-echo "   /story-selling          — Meta ad scripts where story earns the sale"
-echo "   /critique               — Score work against any framework"
-echo "   /gemini-api             — Gemini for images, video, text"
+echo "   /story-selling           — Meta ad scripts where story earns the sale"
+echo "   /critique                — Score work against any framework"
+echo "   /gemini-api              — Gemini for images, video, text"
 echo ""
 echo " Available commands:"
-echo "   /ad-library             — Scrape Meta Ad Library"
-echo "   /transcribe             — Transcribe video/audio"
+echo "   /ad-library              — Scrape Meta Ad Library"
+echo "   /transcribe              — Transcribe video/audio"
+echo ""
+echo " Research Engine (MCP — available automatically in Claude Code):"
+echo "   create_brand             — Create a new brand from product info"
+echo "   run_research_sprint      — Run Reddit research sprints"
+echo "   check_sprint_status      — Monitor sprint progress"
+echo "   list_brands / list_sprints — Browse existing brands and sprints"
+echo ""
+echo " Note: The Research Engine uses your Claude Code session for auth —"
+echo " no separate API key needed. Just use it from within Claude Code."
 echo ""

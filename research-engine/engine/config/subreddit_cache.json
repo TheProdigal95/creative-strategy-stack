@@ -1,0 +1,184 @@
+{
+  "fitness": {
+    "subreddits": [
+      "Fitness",
+      "bodyweightfitness",
+      "xxfitness",
+      "GYM",
+      "strength_training",
+      "fitness30plus",
+      "beginnerfitness",
+      "naturalbodybuilding",
+      "calisthenics"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "weight_loss": {
+    "subreddits": [
+      "loseit",
+      "progresspics",
+      "1200isplenty",
+      "intermittentfasting",
+      "CICO",
+      "SuperMorbidlyObese",
+      "WeightLossAdvice",
+      "fasting"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "parenting": {
+    "subreddits": [
+      "daddit",
+      "Parenting",
+      "Mommit",
+      "beyondthebump",
+      "workingmoms",
+      "NewParents",
+      "AskParents",
+      "breakingdad"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "exercise": {
+    "subreddits": [
+      "Fitness",
+      "bodyweightfitness",
+      "running",
+      "C25K",
+      "Swimming",
+      "cycling",
+      "yoga",
+      "flexibility"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "diet": {
+    "subreddits": [
+      "nutrition",
+      "EatCheapAndHealthy",
+      "1200isplenty",
+      "MealPrepSunday",
+      "keto",
+      "vegetarian",
+      "vegan",
+      "loseit"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "mental_health": {
+    "subreddits": [
+      "mentalhealth",
+      "Anxiety",
+      "depression",
+      "GetMotivated",
+      "DecidingToBeBetter",
+      "selfimprovement",
+      "SuicideWatch",
+      "TalkTherapy"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "productivity": {
+    "subreddits": [
+      "productivity",
+      "GetDisciplined",
+      "timemanagement",
+      "organization",
+      "study",
+      "LifeProTips",
+      "productivity",
+      "DecidingToBeBetter"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "health": {
+    "subreddits": [
+      "Health",
+      "AskDocs",
+      "medical",
+      "HealthAnxiety",
+      "ChronicPain",
+      "backpain",
+      "Posture",
+      "Sciatica",
+      "PelvicFloor",
+      "physicaltherapy",
+      "flexibility",
+      "Ergonomics",
+      "DiagnoseMe",
+      "sleep"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "workplace": {
+    "subreddits": [
+      "antiwork",
+      "jobs",
+      "careerguidance",
+      "OfficeWorkers",
+      "WFH",
+      "standingdesk",
+      "homeoffice",
+      "remotework",
+      "workfromhome"
+    ],
+    "last_updated": "2025-01-31",
+    "source": "seed"
+  },
+  "backyard_farming": {
+    "subreddits": [
+      "BackYardChickens",
+      "chickens",
+      "BackyardPoultry",
+      "chickencoop",
+      "homesteading",
+      "homestead",
+      "urbanfarming",
+      "selfreliance",
+      "BackyardOrchard",
+      "RaisingChickens",
+      "poultry"
+    ],
+    "last_updated": "2026-02-27",
+    "source": "seed"
+  },
+  "pet_care": {
+    "subreddits": [
+      "Pets",
+      "AskVet",
+      "dogs",
+      "cats",
+      "reptiles",
+      "petadvice",
+      "dogcare",
+      "catcare",
+      "exoticanimals",
+      "hobbyfarming"
+    ],
+    "last_updated": "2026-02-27",
+    "source": "seed"
+  },
+  "gardening_outdoors": {
+    "subreddits": [
+      "gardening",
+      "vegetablegardening",
+      "permaculture",
+      "composting",
+      "DIY",
+      "preppers",
+      "OffGrid",
+      "sustainability",
+      "ZeroWaste"
+    ],
+    "last_updated": "2026-02-27",
+    "source": "seed"
+  }
+}

@@ -100,13 +100,31 @@ pip install mlx mlx-whisper numpy
 | Gemini API wrapper | `tools/gemini-api/` | Universal Gemini interface (text, images, video, generation) |
 | MLX Transcribe | `tools/mlx-transcribe.py` | Local video transcription (Apple Silicon only, optional) |
 
+### Research Engine (MCP server — available automatically in Claude Code)
+
+The Research Engine is a 12-step Python pipeline that scrapes Reddit, extracts evidence, discovers themes, scores brand fit, mines language patterns, and produces structured insights. It runs as an MCP server, so you use it directly from Claude Code — no separate commands needed.
+
+**No API key required.** It authenticates through your Claude Code session automatically.
+
+| Tool | What it does |
+|------|-------------|
+| `create_brand` | Create a new brand from a raw product/brand info dump |
+| `run_research_sprint` | Start a Reddit research sprint (7-25 min per sprint) |
+| `check_sprint_status` | Monitor a running sprint |
+| `list_brands` | See all configured brands |
+| `list_sprints` | See all sprints for a brand |
+
+**Output:** `insights_final.csv` (20-40 structured insights with evidence counts, VoC quotes, persona assignments) + `language_report.json` (how the audience actually talks).
+
+See `research-engine/README.md` for full documentation.
+
 ---
 
 ## The Workflow
 
 The full process is documented in `how-i-work.md`. Here's the short version:
 
-1. **Research** — Scrape reviews (brand + competitors). Run research sprints on Reddit. Extract VoC, language patterns, emotional registers.
+1. **Research** — Scrape reviews (brand + competitors). Run Research Engine sprints on Reddit. Extract VoC, language patterns, emotional registers.
 2. **Context docs** — Write Brand Context + Product Context + Compliance Guidelines.
 3. **Angle development** — Generate angle hypotheses grounded in VoC. Rank by evidence strength.
 4. **Testing strategy** — Define which angles to test, in what order, and why.

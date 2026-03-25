@@ -1,0 +1,5 @@
+pandas
+requests
+pyyaml
+claude-code-sdk
+mcp

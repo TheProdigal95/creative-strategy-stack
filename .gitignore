@@ -3,6 +3,7 @@
 
 # Dependencies
 node_modules/
+__pycache__/
 
 # Downloaded media (can be large)
 downloads/
@@ -12,3 +13,11 @@ downloads/
 
 # Analysis output (regenerable)
 analysis/
+
+# Research Engine brand data (per-user)
+research-engine/brands/*/
+!research-engine/brands/.gitkeep
+
+# Research Engine databases
+*.sqlite
+*.db
