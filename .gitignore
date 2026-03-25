@@ -1,0 +1,14 @@
+# API keys
+.env
+
+# Dependencies
+node_modules/
+
+# Downloaded media (can be large)
+downloads/
+
+# OS files
+.DS_Store
+
+# Analysis output (regenerable)
+analysis/
