@@ -6,45 +6,24 @@ Takes you from "new brand, zero creative" to a full pipeline of static ads, UGC 
 
 ---
 
-## What is this?
-
-This is a shared workspace that lives inside [Claude Code](https://claude.ai/code) — Anthropic's CLI for working with Claude directly in your terminal. When you open this folder in Claude Code, it automatically loads context about the tools, frameworks, and workflows available to you. You type what you need in plain English, and the system handles the rest.
-
-Everything here is built around one idea: **the customer's own language is the best source material for ads.** The tools research how real people talk about their problems, and the skills turn that language into strategic creative briefs.
-
-## Prerequisites
-
-You need two things before setup:
-
-1. **Claude Code** — Install from [claude.ai/code](https://claude.ai/code). This is the environment everything runs in. If you've never used it: it's a terminal app where you talk to Claude and it can read files, run scripts, and use tools on your behalf.
-
-2. **A terminal** — On Mac, open Terminal (or iTerm). Claude Code runs here.
-
-Everything else (Node.js, Python, Homebrew, dependencies) gets installed automatically by the setup script.
-
 ## Setup
+
+This is a shared workspace in Claude Code. To get started:
+
+1. Install [Claude Code](https://claude.ai/code) if you haven't already
+2. Clone this repo and open it in Claude Code:
 
 ```bash
 git clone https://github.com/TheProdigal95/creative-strategy-stack.git
 cd creative-strategy-stack
-./setup.sh
-```
-
-The setup script walks you through everything:
-- Installs Node.js and Python if you don't have them (via Homebrew — installs that too if needed)
-- Installs all tool dependencies
-- Copies the AI skills and commands into your Claude Code config
-- Wires up the Research Engine as a background service
-- Prompts you for two API keys (Gemini and Apify — it tells you where to get them)
-
-After setup, open the folder in Claude Code:
-
-```bash
-cd creative-strategy-stack
 claude
 ```
 
-That's it. Claude now has access to everything.
+3. Once inside Claude Code, tell it:
+
+> "Run ./setup.sh and walk me through the setup. I need help getting everything installed and configured."
+
+Claude will run the setup script, install all dependencies, and prompt you for the API keys you need. It handles everything from there.
 
 ## What to try first
 
