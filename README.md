@@ -66,6 +66,19 @@ The ratio of Selves and the emotional journey are deliberate strategic decisions
 - Apify account — [Sign up here](https://apify.com/) (for Meta Ad Library + Reddit scraping)
 - (Optional) Apple Silicon Mac for free local MLX transcription
 
+## Contributing
+
+Main is protected — nobody pushes directly to it. To make changes:
+
+```bash
+git checkout -b your-name/what-you-changed
+# make your changes
+git add -A && git commit -m "what you did"
+git push -u origin your-name/what-you-changed
+```
+
+Then open a pull request on GitHub. Changes go into main after review and approval.
+
 ## Roadmap
 
 This is a working system that's actively evolving. Known areas for improvement:
