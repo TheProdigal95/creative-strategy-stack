@@ -4,6 +4,8 @@ A complete creative strategy system for DTC brands, built around Claude Code.
 
 Takes you from "new brand, zero creative" to a full pipeline of static ads, UGC video briefs, listicles, and ongoing test batches — all grounded in real customer language, not assumptions.
 
+Everything here is built around one idea: **the customer's own language is the best source material for ads.** The tools research how real people talk about their problems — scraping Reddit, pulling reviews, mining forums — and the skills turn that language into strategic creative briefs with psychological frameworks baked in. No angle, headline, or emotional arc comes from guessing. It all traces back to something a real customer said.
+
 ---
 
 ## Setup
