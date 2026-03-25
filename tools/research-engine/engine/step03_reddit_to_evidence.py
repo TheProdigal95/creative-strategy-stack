@@ -9,7 +9,7 @@ Usage:
     python3 engine/step03_reddit_to_evidence.py <brand> <sprint>
 
 Example:
-    python3 engine/step03_reddit_to_evidence.py pureplank "01 - Back Pain from Desk Jobs"
+    python3 engine/step03_reddit_to_evidence.py mybrand "01 - Back Pain from Desk Jobs"
 
 Input:
     brands/<brand>/sprints/<sprint>/_intermediate/reddit_raw.jsonl
@@ -143,7 +143,7 @@ def process_thread(record):
 
 def main():
     parser = argparse.ArgumentParser(description='Transform Reddit JSONL to evidence DB')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name')
 
     args = parser.parse_args()

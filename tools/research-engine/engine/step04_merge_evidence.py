@@ -10,7 +10,7 @@ Usage:
     python3 engine/step04_merge_evidence.py <brand>
 
 Example:
-    python3 engine/step04_merge_evidence.py pureplank
+    python3 engine/step04_merge_evidence.py mybrand
 """
 
 import argparse
@@ -101,7 +101,7 @@ def verify_db(brand):
 
 def main():
     parser = argparse.ArgumentParser(description='Verify evidence.db health')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     args = parser.parse_args()
 
     success = verify_db(args.brand)

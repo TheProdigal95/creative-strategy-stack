@@ -5,8 +5,8 @@ Insight Writer - Step 09 of Research Engine
 Uses LLM to write full Notes section and determine Valence, Intensity, Self.
 
 Usage:
-    python3 engine/step09_insight_writer.py pureplank 01_weight-loss-men-dads
-    python3 engine/step09_insight_writer.py pureplank 01_weight-loss-men-dads --verbose
+    python3 engine/step09_insight_writer.py mybrand 01_weight-loss-men-dads
+    python3 engine/step09_insight_writer.py mybrand 01_weight-loss-men-dads --verbose
 """
 
 import os
@@ -527,7 +527,7 @@ def print_summary(themes_data):
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Write full insight analysis using LLM')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 01_weight-loss-men-dads)')
     parser.add_argument('--batch-size', type=int, default=7,
                        help='Number of insights to process per LLM call (default: 7)')

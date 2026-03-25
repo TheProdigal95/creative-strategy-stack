@@ -9,8 +9,8 @@ Two-step process:
 2. Python scores all evidence using pattern matching
 
 Usage:
-    python3 engine/step05_brand_fit_scorer.py pureplank 01_weight-loss-men-dads
-    python3 engine/step05_brand_fit_scorer.py pureplank 01_weight-loss-men-dads --threshold 20
+    python3 engine/step05_brand_fit_scorer.py mybrand 01_weight-loss-men-dads
+    python3 engine/step05_brand_fit_scorer.py mybrand 01_weight-loss-men-dads --threshold 20
 """
 
 import os
@@ -424,7 +424,7 @@ TOP MATCHED CATEGORIES:
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Score evidence for brand fit')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 01_weight-loss-men-dads)')
     parser.add_argument('--threshold', type=int, default=15, help='Minimum score threshold (default: 15)')
     parser.add_argument('--skip-vocab', action='store_true', help='Skip vocabulary generation if exists')

@@ -12,10 +12,10 @@ Usage:
     python3 engine/orchestrator.py <brand> --parallel "direction 1" "direction 2" [options]
 
 Examples:
-    python3 engine/orchestrator.py pureplank "no time for exercise"
-    python3 engine/orchestrator.py pureplank "back pain desk workers" --scope deep
-    python3 engine/orchestrator.py pureplank --from-themes
-    python3 engine/orchestrator.py pureplank --parallel "back pain" "weight loss" --scope quick
+    python3 engine/orchestrator.py mybrand "no time for exercise"
+    python3 engine/orchestrator.py mybrand "back pain desk workers" --scope deep
+    python3 engine/orchestrator.py mybrand --from-themes
+    python3 engine/orchestrator.py mybrand --parallel "back pain" "weight loss" --scope quick
 """
 
 import sys
@@ -827,7 +827,7 @@ async def main():
     parser = argparse.ArgumentParser(
         description="Research Engine Orchestrator - Run complete pipeline"
     )
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('research_direction', nargs='*', help='Research direction(s). Multiple allowed with --parallel.')
     parser.add_argument('--scope', choices=['quick', 'standard', 'deep'], default='standard',
                         help='Thread count scope (default: standard)')

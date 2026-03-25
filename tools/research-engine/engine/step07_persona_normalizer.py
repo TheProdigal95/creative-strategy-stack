@@ -5,8 +5,8 @@ Persona Normalizer - Step 07 of Research Engine
 Normalizes raw persona descriptions into consistent canonical labels.
 
 Usage:
-    python3 engine/step07_persona_normalizer.py pureplank 01_weight-loss-men-dads
-    python3 engine/step07_persona_normalizer.py pureplank 01_weight-loss-men-dads --verbose
+    python3 engine/step07_persona_normalizer.py mybrand 01_weight-loss-men-dads
+    python3 engine/step07_persona_normalizer.py mybrand 01_weight-loss-men-dads --verbose
 """
 
 import os
@@ -315,7 +315,7 @@ def print_summary_report(raw_personas, mappings, new_personas, updated_ledger):
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Normalize raw persona descriptions')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 01_weight-loss-men-dads)')
     parser.add_argument('--verbose', action='store_true',
                        help='Print full LLM prompt before sending')

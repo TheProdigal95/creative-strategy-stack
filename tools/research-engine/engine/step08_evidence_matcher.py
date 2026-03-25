@@ -5,8 +5,8 @@ Evidence Matcher - Step 08 of Research Engine
 Counts evidence matches for each insight using pattern matching.
 
 Usage:
-    python3 engine/step08_evidence_matcher.py pureplank 01_weight-loss-men-dads
-    python3 engine/step08_evidence_matcher.py pureplank 01_weight-loss-men-dads --verbose
+    python3 engine/step08_evidence_matcher.py mybrand 01_weight-loss-men-dads
+    python3 engine/step08_evidence_matcher.py mybrand 01_weight-loss-men-dads --verbose
 """
 
 import os
@@ -312,7 +312,7 @@ def print_summary(themes_data):
 
 def main():
     parser = argparse.ArgumentParser(description='Match evidence to insights using pattern matching')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 01_weight-loss-men-dads)')
     parser.add_argument('--verbose', action='store_true',
                        help='Print detailed progress')

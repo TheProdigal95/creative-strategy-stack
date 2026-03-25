@@ -19,7 +19,7 @@ When a user wants to add a new brand, set up a brand, or says something like "I 
 
 ### Step 1: Get the brand name
 
-Ask the user for a short lowercase brand name to use as the folder name (e.g., `pureplank`, `acmewidgets`, `heatedblanket`). No spaces, no special characters.
+Ask the user for a short lowercase brand name to use as the folder name (e.g., `suncoastgreens`, `acmewidgets`, `heatedblanket`). No spaces, no special characters.
 
 ### Step 2: Ask for brand information
 
@@ -178,7 +178,7 @@ Add to project-level `.claude/settings.json`:
     "research-engine": {
       "command": "python3",
       "args": ["engine/mcp_server.py"],
-      "cwd": "/Users/marce/Desktop/Trabajo/Workflows/Research Engine"
+      "cwd": "/path/to/creative-strategy-stack/tools/research-engine"
     }
   }
 }

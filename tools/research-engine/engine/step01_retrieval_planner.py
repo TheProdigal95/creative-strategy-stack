@@ -14,8 +14,8 @@ Usage:
     python3 step01_retrieval_planner.py <brand> <sprint> "<research_direction>" --refresh-cache
 
 Examples:
-    python3 step01_retrieval_planner.py pureplank 02_busy-dads "weight loss for busy dads"
-    python3 step01_retrieval_planner.py pureplank 02_busy-dads "weight loss for busy dads" --scope deep
+    python3 step01_retrieval_planner.py mybrand 02_busy-dads "weight loss for busy dads"
+    python3 step01_retrieval_planner.py mybrand 02_busy-dads "weight loss for busy dads" --scope deep
 """
 
 import json
@@ -506,7 +506,7 @@ def save_outputs(brand: str, sprint: str, config: dict):
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Generate scrape config from research direction')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 02_busy-dads)')
     parser.add_argument('research_direction', help='Research direction in quotes')
     parser.add_argument('--scope', choices=['quick', 'standard', 'deep'], default='standard',

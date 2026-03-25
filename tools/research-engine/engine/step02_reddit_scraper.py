@@ -10,8 +10,8 @@ Usage:
     python3 engine/step02_reddit_scraper.py <brand> <sprint> --stage2
 
 Example:
-    python3 engine/step02_reddit_scraper.py pureplank 01_weight-loss-men-dads
-    python3 engine/step02_reddit_scraper.py pureplank 01_weight-loss-men-dads --stage2
+    python3 engine/step02_reddit_scraper.py mybrand 01_weight-loss-men-dads
+    python3 engine/step02_reddit_scraper.py mybrand 01_weight-loss-men-dads --stage2
 
 Input:
     brands/<brand>/sprints/<sprint>/_intermediate/scrape_config.json
@@ -626,7 +626,7 @@ def run_stage2(brand: str, sprint: str, config: dict):
 
 def main():
     parser = argparse.ArgumentParser(description='Scrape Reddit threads using JSON API')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 01_weight-loss-men-dads)')
     parser.add_argument('--stage2', action='store_true',
                        help='Run stage 2 (scale-up) instead of stage 1 (verification)')

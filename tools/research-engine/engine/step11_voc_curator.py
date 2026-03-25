@@ -9,9 +9,9 @@ This is a MANUAL tool — not part of the orchestrator.
 User reviews insights_final.csv, marks rows in Keep column, then runs this.
 
 Usage:
-    python3 engine/step11_voc_curator.py pureplank "04 - Men Over 40 Fitness Recovery"
-    python3 engine/step11_voc_curator.py pureplank 01_weight-loss-men-dads
-    python3 engine/step11_voc_curator.py pureplank 01_weight-loss-men-dads --export-json
+    python3 engine/step11_voc_curator.py mybrand "04 - Supplement Fatigue Adults"
+    python3 engine/step11_voc_curator.py mybrand 01_greens-nutrition-gaps
+    python3 engine/step11_voc_curator.py mybrand 01_greens-nutrition-gaps --export-json
 """
 
 import os
@@ -85,7 +85,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Curate VoC data from marked insights into SQLite'
     )
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name')
     parser.add_argument('--export-json', action='store_true',
                         help='Also export curated VoC to voc_master.json')

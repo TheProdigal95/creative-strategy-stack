@@ -15,8 +15,8 @@ How it works:
 4. Write structured JSON report
 
 Usage:
-    python3 engine/step12_language_miner.py pureplank "05 - Dad Bod Comeback Humor"
-    python3 engine/step12_language_miner.py pureplank 05
+    python3 engine/step12_language_miner.py mybrand "05 - Supplement Trust Issues"
+    python3 engine/step12_language_miner.py mybrand 05
 """
 
 import os
@@ -391,7 +391,7 @@ async def call_llm(prompt, logger, retries=2):
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Mine audience language patterns from evidence')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name')
     parser.add_argument('--verbose', action='store_true', help='Print LLM prompt')
 

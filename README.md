@@ -32,12 +32,12 @@ Claude will run the setup script, install all dependencies, and prompt you for t
 Once you're in Claude Code, try these to get a feel for the system:
 
 **Research a new brand:**
-> "Create a brand called pure-plank. Here's the product info: [paste product description, website copy, or messy notes]"
+> "Create a brand called suncoast-greens. Here's the product info: [paste product description, website copy, or messy notes]"
 
 Claude sets up the brand and you can immediately run research sprints on it.
 
 **Run a Reddit research sprint:**
-> "Run a research sprint for pure-plank on 'back pain from desk jobs'"
+> "Run a research sprint for suncoast-greens on 'daily greens supplements for energy'"
 
 This kicks off the 12-step Research Engine. It scrapes Reddit, extracts evidence, discovers themes, and comes back 7-25 minutes later with structured insights and customer language.
 

@@ -8,9 +8,9 @@ and using LLM to extract authentic quotes and language patterns.
 Adds VoC and Keep columns to the existing insights_final.csv.
 
 Usage:
-    python3 engine/step10_voc_analyzer.py pureplank 01_weight-loss-men-dads
-    python3 engine/step10_voc_analyzer.py pureplank "03 - Time Scarcity for Busy People"
-    python3 engine/step10_voc_analyzer.py pureplank 01_weight-loss-men-dads --verbose
+    python3 engine/step10_voc_analyzer.py mybrand 01_weight-loss-men-dads
+    python3 engine/step10_voc_analyzer.py mybrand "03 - Time Scarcity for Busy People"
+    python3 engine/step10_voc_analyzer.py mybrand 01_weight-loss-men-dads --verbose
 """
 
 import os
@@ -551,7 +551,7 @@ def add_voc_columns(insights_df, voc_results):
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Analyze voice of customer for each insight')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name')
     parser.add_argument('--batch-size', type=int, default=5,
                         help='Insights per LLM batch (default: 5)')

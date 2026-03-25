@@ -3,9 +3,9 @@
  * Scrape a brand's Meta Ad Library via Apify.
  *
  * Usage:
- *   node scrape.js --brand "Huel" --url "https://www.facebook.com/ads/library/?...&view_all_page_id=123"
- *   node scrape.js --brand "Huel" --page-id 2281559212068421
- *   node scrape.js --brand "Huel" --url "..." --output /path/to/data
+ *   node scrape.js --brand "BrandName" --url "https://www.facebook.com/ads/library/?...&view_all_page_id=123456789"
+ *   node scrape.js --brand "BrandName" --page-id 123456789
+ *   node scrape.js --brand "BrandName" --url "..." --output /path/to/data
  */
 
 import axios from 'axios';

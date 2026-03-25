@@ -10,7 +10,7 @@ Usage:
     python3 engine/migrate_to_sqlite.py --all
 
 Examples:
-    python3 engine/migrate_to_sqlite.py pureplank
+    python3 engine/migrate_to_sqlite.py mybrand
     python3 engine/migrate_to_sqlite.py --all
 """
 
@@ -154,7 +154,7 @@ def find_all_brands():
 
 def main():
     parser = argparse.ArgumentParser(description="Migrate CSV/JSON to SQLite")
-    parser.add_argument("brand", nargs="?", help="Brand name (e.g., pureplank)")
+    parser.add_argument("brand", nargs="?", help="Brand name (e.g., mybrand)")
     parser.add_argument("--all", action="store_true", help="Migrate all brands")
 
     args = parser.parse_args()

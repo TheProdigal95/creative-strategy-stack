@@ -5,9 +5,9 @@ Theme Discovery - Step 06 of Research Engine
 Analyzes filtered evidence to identify bridgeable themes.
 
 Usage:
-    python3 engine/step06_theme_discovery.py pureplank 01_weight-loss-men-dads
-    python3 engine/step06_theme_discovery.py pureplank 01_weight-loss-men-dads --sample-size 300
-    python3 engine/step06_theme_discovery.py pureplank 01_weight-loss-men-dads --verbose
+    python3 engine/step06_theme_discovery.py mybrand 01_weight-loss-men-dads
+    python3 engine/step06_theme_discovery.py mybrand 01_weight-loss-men-dads --sample-size 300
+    python3 engine/step06_theme_discovery.py mybrand 01_weight-loss-men-dads --verbose
 """
 
 import os
@@ -615,7 +615,7 @@ INSIGHTS DISCOVERED: {total_insights}
 
 async def main_async():
     parser = argparse.ArgumentParser(description='Discover bridgeable themes from filtered evidence')
-    parser.add_argument('brand', help='Brand name (e.g., pureplank)')
+    parser.add_argument('brand', help='Brand name (e.g., mybrand)')
     parser.add_argument('sprint', help='Sprint folder name (e.g., 01_weight-loss-men-dads)')
     parser.add_argument('--sample-size', type=int, default=300,
                        help='Number of evidence pieces to sample (default: 300)')

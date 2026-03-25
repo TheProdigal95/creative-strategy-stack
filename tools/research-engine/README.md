@@ -91,45 +91,45 @@ mkdir -p brands/mybrand
 Then create `brands/mybrand/brand_brief.yaml`. Here's a real example to follow:
 
 ```yaml
-brand_name: "Pure Plank"
-brand_promise: "3-MIN MICRO-COMMITMENT"
+brand_name: "SunCoast Greens"
+brand_promise: "ONE SCOOP, FULL NUTRITION"
 
 product: |
-  $149 cushioned planking board with ergonomic handles,
-  built-in timer, and phone holder. Designed to make planking
-  comfortable and trackable.
+  $59/month daily greens powder with 40+ organic superfoods,
+  probiotics, and adaptogens. Mixes into water or smoothies
+  in seconds. No artificial sweeteners, third-party tested.
 
 main_selling_points:
-  - name: "Comfort Hack"
-    description: "Cushioned padding + non-slip handles removes elbow pain and slipping"
-    solves: "People quit planking at 10-15 seconds due to discomfort"
+  - name: "40+ Superfoods in One Scoop"
+    description: "Replaces handfuls of individual supplements with a single daily scoop"
+    solves: "People overwhelmed by juggling 5-10 different supplements every morning"
 
-  - name: "3 Minutes, No Excuses"
-    description: "Only 3 minutes daily kills the time objection"
-    solves: "People think they don't have time for exercise"
+  - name: "Actually Tastes Good"
+    description: "Natural mint-citrus flavor that mixes clean — no chalky texture or fake sweetener aftertaste"
+    solves: "People who tried greens powders before and couldn't stomach the taste"
 
-  - name: "Living Proof Founders"
-    description: "Adam Copeland (Edge) + Jay Reso (Christian Cage), both 51, returned to peak shape after injuries"
-    solves: "Skepticism that older/injured people can benefit"
+  - name: "Third-Party Tested"
+    description: "Every batch tested by independent labs for heavy metals, pesticides, and label accuracy"
+    solves: "People who don't trust supplement brands making unverified health claims"
 
 pain_points_solved:
-  - "People quit planking due to elbow/wrist discomfort on hard floors"
-  - "People believe they don't have time for exercise"
-  - "People think they're too old or injured to start"
-  - "People try planks, plateau at 15-60 seconds, and give up"
+  - "I take 6 different supplements every morning and I'm not even sure they're working"
+  - "Every greens powder I've tried tastes like lawn clippings"
+  - "I know I should eat more vegetables but I never hit my daily targets"
+  - "I don't trust supplement brands — half of them don't contain what the label says"
 
 target_customers:
-  - "Busy adults who want core strength but can't commit to gym"
-  - "Men/dads who want to lose belly fat"
-  - "People who've tried and quit exercise programs"
-  - "Office workers with back pain"
-  - "People 40+ who think they're past their fitness prime"
+  - "Health-conscious adults 25-45 who want better nutrition but don't have time to meal-prep"
+  - "Busy professionals who skip breakfast or grab coffee and call it a meal"
+  - "People already taking multiple supplements who want to simplify their routine"
+  - "Fitness-minded people who eat well but know they still have nutritional gaps"
+  - "Parents who want a quick nutrition boost they can take while getting kids ready"
 
 common_objections:
-  - "Planks don't burn belly fat"
-  - "I can just plank on the floor for free"
-  - "3 minutes can't do anything meaningful"
-  - "I'm too heavy/old/injured to plank"
+  - "Greens powders taste terrible — I've tried them before"
+  - "I'd rather just eat real vegetables"
+  - "$59/month is expensive for a powder"
+  - "How do I know it actually has what the label says?"
 ```
 
 **What each field does:**

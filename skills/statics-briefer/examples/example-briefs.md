@@ -450,7 +450,7 @@ Option B: Gold bar + tee side-by-side
 Why it works: Direct visual comparison. Shows the value mismatch (gold bar worth more than tee). Simple, clear.
 
 Option C: Pure gold bar closeup
-Tight crop on 1oz gold bar with "UndrDog" or brand stamp visible. Nothing else.
+Tight crop on 1oz gold bar with brand stamp visible. Nothing else.
 Why it works: Maximum focus on the prize. Lets headline do the work. Gold is inherently attention-grabbing.
 
 

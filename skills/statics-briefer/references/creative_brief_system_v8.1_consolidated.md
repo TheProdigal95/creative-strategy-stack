@@ -31,7 +31,7 @@ The complete ad = Format + Visual Elements + Headline working together.
 - "Go for gold." → What gold? Why?
 
 **Examples of CLEAR (passes ad-level zero-context test):**
-- "UndrDog: Win a gold bar." → Got it instantly.
+- "BRAND: Win a gold bar." → Got it instantly.
 - "The Man Boob Destroyer" + t-shirt product photo → Visual makes product clear, headline can be witty.
 - "1 in 100 orders gets a free gold bar." → Got it instantly regardless of visual.
 

@@ -82,97 +82,89 @@ RULES:
   key differentiators.
 
 EXAMPLE 1:
-brand_name: "Pure Plank"
-brand_promise: "3-MIN MICRO-COMMITMENT"
+brand_name: "SunCoast Greens"
+brand_promise: "ONE SCOOP, FULL NUTRITION"
 
 product: |
-  $149 cushioned planking board with ergonomic handles,
-  built-in timer, and phone holder. Designed to make planking
-  comfortable and trackable.
+  $59/month daily greens powder with 40+ organic superfoods,
+  probiotics, and adaptogens. Mixes into water or smoothies
+  in seconds. No artificial sweeteners, third-party tested.
 
 main_selling_points:
-  - name: "Comfort Hack"
-    description: "Cushioned padding + non-slip handles removes elbow pain and slipping"
-    solves: "People quit planking at 10-15 seconds due to discomfort"
+  - name: "40+ Superfoods in One Scoop"
+    description: "Replaces handfuls of individual supplements with a single daily scoop"
+    solves: "People overwhelmed by juggling 5-10 different supplements every morning"
 
-  - name: "3 Minutes, No Excuses"
-    description: "Only 3 minutes daily kills the time objection"
-    solves: "People think they don't have time for exercise"
+  - name: "Actually Tastes Good"
+    description: "Natural mint-citrus flavor that mixes clean — no chalky texture or fake sweetener aftertaste"
+    solves: "People who tried greens powders before and couldn't stomach the taste"
 
-  - name: "Living Proof Founders"
-    description: "Adam Copeland (Edge) + Jay Reso (Christian Cage), both 51, returned to peak shape after injuries"
-    solves: "Skepticism that older/injured people can benefit"
+  - name: "Third-Party Tested"
+    description: "Every batch tested by independent labs for heavy metals, pesticides, and label accuracy"
+    solves: "People who don't trust supplement brands making unverified health claims"
 
 pain_points_solved:
-  - "People quit planking due to elbow/wrist discomfort on hard floors"
-  - "People believe they don't have time for exercise"
-  - "People think they're too old or injured to start"
-  - "People try planks, plateau at 15-60 seconds, and give up"
+  - "I take 6 different supplements every morning and I'm not even sure they're working"
+  - "Every greens powder I've tried tastes like lawn clippings"
+  - "I know I should eat more vegetables but I never hit my daily targets"
+  - "I don't trust supplement brands — half of them don't contain what the label says"
 
 target_customers:
-  - "Busy adults who want core strength but can't commit to gym"
-  - "Men/dads who want to lose belly fat"
-  - "People who've tried and quit exercise programs"
-  - "Office workers with back pain"
-  - "People 40+ who think they're past their fitness prime"
+  - "Health-conscious adults 25-45 who want better nutrition but don't have time to meal-prep"
+  - "Busy professionals who skip breakfast or grab coffee and call it a meal"
+  - "People already taking multiple supplements who want to simplify their routine"
+  - "Fitness-minded people who eat well but know they still have nutritional gaps"
+  - "Parents who want a quick nutrition boost they can take while getting kids ready"
 
 common_objections:
-  - "Planks don't burn belly fat"
-  - "I can just plank on the floor for free"
-  - "3 minutes can't do anything meaningful"
-  - "I'm too heavy/old/injured to plank"
+  - "Greens powders taste terrible — I've tried them before"
+  - "I'd rather just eat real vegetables"
+  - "$59/month is expensive for a powder"
+  - "How do I know it actually has what the label says?"
 
 EXAMPLE 2:
-brand_name: "WeightRx"
-brand_promise: "AFFORDABLE GLP-1 DELIVERED FAST"
+brand_name: "DriftWell"
+brand_promise: "DEEP SLEEP WITHOUT DRUGS"
 
 product: |
-  Compounded GLP-1 weight loss medications (semaglutide + B12 and tirzepatide)
-  delivered to your door within 48 hours. 100% online telehealth — same-day
-  doctor visits and prescriptions. Semaglutide starts at $99/mo, tirzepatide
-  at $83/mo. No insurance needed, no long-term contracts, cancel anytime.
-  Ships FedEx overnight on ice from licensed U.S. compounding pharmacies.
-  30-day money-back guarantee.
+  Natural sleep supplement combining magnesium glycinate, L-theanine,
+  and apigenin in clinical doses. Two capsules before bed. No melatonin,
+  no grogginess, no dependency. $45/month subscription or $55 one-time.
+  90-day money-back guarantee. Ships free in the US.
 
 main_selling_points:
-  - name: "Lowest Price in Market"
-    description: "Semaglutide at $99/mo and tirzepatide at $83/mo — saving over $1,000/mo vs brand-name Wegovy or Zepbound"
-    solves: "People who want GLP-1 medication but can't afford $1,300-1,600/mo for brand-name drugs and don't have insurance coverage"
+  - name: "No Melatonin, No Grogginess"
+    description: "Uses magnesium, L-theanine, and apigenin instead of melatonin — wakes up clear-headed, not groggy"
+    solves: "People who take melatonin and feel hungover the next morning or worry about dependency"
 
-  - name: "48-Hour Delivery"
-    description: "Same-day doctor visit, same-day prescription, medication at your door within 48 hours via FedEx overnight"
-    solves: "People frustrated by long wait times, pharmacy trips, appointment backlogs, and 5-7 day shipping from other telehealth providers"
+  - name: "Clinical Doses, Not Pixie Dust"
+    description: "Each ingredient at the dose used in peer-reviewed sleep studies — not trace amounts for label decoration"
+    solves: "People burned by supplements that underdose ingredients to cut costs"
 
-  - name: "30-Day Money-Back Guarantee"
-    description: "Results in 30 days or full refund — rare risk-reversal in telehealth weight loss"
-    solves: "People hesitant to spend money on something they're not sure will work for them"
-
-  - name: "Easy Switcher Transfer"
-    description: "Accepts patients already on semaglutide or tirzepatide at any dose from other providers — no restart required"
-    solves: "People unhappy with their current GLP-1 provider who don't want the hassle of starting over or losing their current dose"
+  - name: "90-Day Money-Back Guarantee"
+    description: "Try it for a full 3 months — if sleep doesn't improve, full refund no questions asked"
+    solves: "People hesitant to spend money on yet another supplement that might not work"
 
 pain_points_solved:
-  - "I want to try GLP-1 medication but it costs over $1,000 a month and my insurance won't cover it"
-  - "I've been trying to get an appointment for weeks and my pharmacy keeps saying it's on backorder"
-  - "I'm paying $300-400/month at my current provider and the service is terrible — slow responses, shipping delays, can't reach anyone"
-  - "I've tried every diet, every app, every program — nothing sticks and I'm exhausted from trying"
-  - "I want to switch from semaglutide to tirzepatide because I've plateaued or the side effects are too much"
-  - "I don't want to deal with insurance pre-authorizations, prior auths, or step therapy requirements"
+  - "I fall asleep fine but wake up at 3am and can't get back to sleep"
+  - "Melatonin knocks me out but I feel groggy and foggy the entire next day"
+  - "I've tried every sleep supplement and nothing actually works long-term"
+  - "I don't want to take prescription sleep medication but I'm desperate for better sleep"
+  - "I lie in bed with my mind racing and can't shut my brain off"
 
 target_customers:
-  - "Women 30-55 who've heard about GLP-1s through social media or friends and want an affordable way to start"
-  - "People already on semaglutide from Hims, Hers, Ro, or other providers who are frustrated with price, service, or results"
-  - "People who want to switch from semaglutide to tirzepatide for better results or fewer side effects"
-  - "Diet-fatigued people who've tried everything — keto, Noom, Weight Watchers, intermittent fasting — and are ready for medical intervention"
-  - "People with pre-diabetes, high A1C, high cholesterol, or other weight-related health scares who need to lose weight now"
-  - "Budget-conscious deal seekers who compare prices and want the most medication for their money"
+  - "Adults 30-55 who have trouble staying asleep or falling asleep and want a non-prescription solution"
+  - "People currently using melatonin who are unhappy with grogginess or worried about long-term use"
+  - "High-stress professionals whose racing thoughts keep them awake at night"
+  - "People who've tried prescription sleep aids and want to switch to something natural"
+  - "Health-conscious consumers who research ingredients and want clinical-dose supplements"
 
 common_objections:
-  - "Compounded medication isn't the same as the real thing — is it safe?"
-  - "This price seems too good to be true — what's the catch?"
-  - "I don't trust online telehealth — will I actually talk to a real doctor?"
-  - "What happens when I stop taking it — won't I just gain it all back?"
-  - "I've heard horror stories about side effects like nausea and vomiting"
+  - "I've tried natural sleep supplements before and none of them worked"
+  - "If it doesn't have melatonin, how can it actually help me sleep?"
+  - "Is it safe to take every night long-term?"
+  - "Why is this more expensive than melatonin gummies?"
+  - "$45/month adds up — is it really worth it?"
 
 ---
 
@@ -285,7 +277,7 @@ async def create_brand(brand_slug: str, info_dump: str) -> str:
 
     Args:
         brand_slug: Lowercase identifier for the brand, no spaces
-            (e.g., "pureplank", "weightrx", "heatedblanket").
+            (e.g., "suncoastgreens", "driftwell", "heatedblanket").
         info_dump: Raw text about the product/brand — can be a messy paste from
             a website, notes, Slack thread, or product brief. The engine will
             distill it into the required YAML structure (brand_name, brand_promise,
@@ -377,9 +369,9 @@ def run_research_sprint(brand: str, directions: list[str], scope: str = "standar
     analysis phases concurrently.
 
     Args:
-        brand: Brand name (e.g., "pureplank")
-        directions: One or more research directions (e.g., ["back pain from desk jobs"]
-            or ["back pain from desk jobs", "weight loss for busy dads"])
+        brand: Brand name (e.g., "suncoastgreens")
+        directions: One or more research directions (e.g., ["daily greens supplements for energy"]
+            or ["daily greens supplements for energy", "supplement fatigue in health-conscious adults"])
         scope: Scraping scope — "quick", "standard", or "deep" (default: "standard")
 
     Returns:
