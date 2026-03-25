@@ -13,6 +13,7 @@ Read `how-i-work.md` for the full philosophy and process walkthrough.
 Copy the `skills/` folder into your Claude Code config:
 
 ```bash
+mkdir -p ~/.claude/skills ~/.claude/commands
 cp -r skills/* ~/.claude/skills/
 ```
 
@@ -38,12 +39,22 @@ Then edit both `.env` files with your actual keys:
 ### 4. Install tool dependencies
 
 ```bash
-cd tools/ad-library && npm install && cd ../..
+cd tools/ad-library && npm install && cd ../gemini-api && npm install && cd ../..
 ```
 
-### 5. (Optional) MLX Transcription
+### 5. (Optional) Local Transcription (MLX)
 
-Local transcription via `tools/mlx-transcribe.py` requires Pinokio with the MLX Video Transcription app installed. If you don't have Pinokio, use the Gemini transcription route instead — `/transcribe` will guide you.
+Local transcription via `tools/mlx-transcribe.py` is free and fast but requires **macOS with Apple Silicon** (M1/M2/M3/M4).
+
+**Option A — Pinokio (easiest):** Install [Pinokio](https://pinokio.computer/) and add the "MLX Video Transcription" app. Everything is bundled.
+
+**Option B — Manual:**
+```bash
+brew install ffmpeg
+pip install mlx mlx-whisper numpy
+```
+
+**Don't have Apple Silicon?** No problem — use Gemini transcription instead. The `/transcribe` command will guide you to the right tool. Gemini transcription works on any platform with just an API key.
 
 ---
 
@@ -74,7 +85,7 @@ Local transcription via `tools/mlx-transcribe.py` requires Pinokio with the MLX 
 |------|----------|---------|
 | Ad Library suite | `tools/ad-library/` | Scrape, download, analyze, batch process, cleanup |
 | Gemini API wrapper | `tools/gemini-api/` | Universal Gemini interface (text, images, video, generation) |
-| MLX Transcribe | `tools/mlx-transcribe.py` | Local video transcription (requires Pinokio) |
+| MLX Transcribe | `tools/mlx-transcribe.py` | Local video transcription (Apple Silicon only, optional) |
 
 ---
 

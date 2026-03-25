@@ -14,16 +14,47 @@ import os
 import subprocess
 import pathlib
 import argparse
-import numpy as np
+import shutil
 
-# Add Pinokio's MLX env to path
+# --- MLX Environment Detection ---
+# This script uses MLX Whisper for local transcription. It requires either:
+#   1. Pinokio with the MLX Video Transcription app installed, OR
+#   2. A manual Python environment with mlx, mlx-whisper, numpy, and ffmpeg
+#
+# If MLX is not available, use the Gemini transcription route instead:
+#   node tools/gemini-api/gemini-api.js "Transcribe this video" --video /path/to/video.mp4
+
+# Try Pinokio environment first, then fall back to system packages
 PINOKIO_ENV = pathlib.Path.home() / "pinokio/api/mlx-video-transcription.git/app/env"
-FFMPEG = str(pathlib.Path.home() / "pinokio/bin/miniconda/bin/ffmpeg")
+PINOKIO_FFMPEG = pathlib.Path.home() / "pinokio/bin/miniconda/bin/ffmpeg"
 
-sys.path.insert(0, str(PINOKIO_ENV / "lib/python3.11/site-packages"))
+if PINOKIO_ENV.exists():
+    sys.path.insert(0, str(PINOKIO_ENV / "lib/python3.11/site-packages"))
+    FFMPEG = str(PINOKIO_FFMPEG) if PINOKIO_FFMPEG.exists() else shutil.which("ffmpeg")
+else:
+    FFMPEG = shutil.which("ffmpeg")
 
-import mlx.core as mx
-import mlx_whisper
+if not FFMPEG:
+    print("Error: ffmpeg not found.")
+    print("Install it with: brew install ffmpeg (macOS) or apt install ffmpeg (Linux)")
+    sys.exit(1)
+
+try:
+    import numpy as np
+    import mlx.core as mx
+    import mlx_whisper
+except ImportError as e:
+    print(f"Error: Required package not found: {e}")
+    print()
+    print("MLX Whisper requires macOS with Apple Silicon and the following packages:")
+    print("  pip install mlx mlx-whisper numpy")
+    print()
+    print("Alternatively, install Pinokio (https://pinokio.computer/) and add the")
+    print("'MLX Video Transcription' app, which bundles everything automatically.")
+    print()
+    print("If you don't have Apple Silicon, use Gemini transcription instead:")
+    print("  node tools/gemini-api/gemini-api.js \"Transcribe this video\" --video /path/to/video.mp4")
+    sys.exit(1)
 
 MODELS = {
     "tiny": "mlx-community/whisper-tiny-mlx-q4",

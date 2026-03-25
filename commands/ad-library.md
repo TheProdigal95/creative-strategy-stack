@@ -6,10 +6,17 @@ Pull a brand's entire Meta Ad Library, download all media, and analyze every cre
 
 **First-time setup:**
 ```bash
-cd ~/.claude/tools/ad-library && /opt/homebrew/bin/npm install
+cd tools/ad-library && npm install
+cd tools/gemini-api && npm install
 ```
 
-**API keys:** Create `~/.claude/tools/ad-library/.env` with:
+**API keys:** Copy `.env.example` to each tool directory and add your keys:
+```bash
+cp .env.example tools/ad-library/.env
+cp .env.example tools/gemini-api/.env
+```
+
+Then edit both `.env` files with your actual keys:
 ```
 APIFY_TOKEN=your_token
 GEMINI_API_KEY=your_key
@@ -32,20 +39,20 @@ Lines starting with `#` are ignored. Save this file anywhere convenient (e.g., i
 ### Step 2: Run the batch
 
 ```bash
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/batch.js --file /path/to/brands.txt
+node tools/ad-library/batch.js --file /path/to/brands.txt
 ```
 
 Optional: specify output directory:
 ```bash
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/batch.js --file /path/to/brands.txt --output /path/to/data
+node tools/ad-library/batch.js --file /path/to/brands.txt --output /path/to/data
 ```
 
 Scrape-only mode (skip media download, useful when you only need the ad copy/headlines from JSON):
 ```bash
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/batch.js --file /path/to/brands.txt --scrape-only
+node tools/ad-library/batch.js --file /path/to/brands.txt --scrape-only
 ```
 
-**Default output:** `~/.claude/tools/ad-library/data/[brand-slug]/` for each brand.
+**Default output:** `tools/ad-library/data/[brand-slug]/` for each brand.
 
 **What it does:** For each brand sequentially: scrapes via Apify (2-10 min), downloads all media. Reports results at the end.
 
@@ -55,13 +62,13 @@ For a single brand, use the individual scripts:
 
 ```bash
 # Scrape
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/scrape.js --brand "BrandName" --url "AD_LIBRARY_URL"
+node tools/ad-library/scrape.js --brand "BrandName" --url "AD_LIBRARY_URL"
 
 # Download media
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/download.js --data ~/.claude/tools/ad-library/data/brand-slug
+node tools/ad-library/download.js --data tools/ad-library/data/brand-slug
 
 # Analyze with Gemini (full visual analysis — use for deep dives, not for every PVP)
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/analyze.js --data ~/.claude/tools/ad-library/data/brand-slug
+node tools/ad-library/analyze.js --data tools/ad-library/data/brand-slug
 ```
 
 **How to get the Ad Library URL:**
@@ -80,15 +87,19 @@ For PVP sprints where you're mapping messaging angles across 10-20 brands, you d
 1. Scrape all brands (batch mode, or `--scrape-only` to skip media download)
 2. Read `ads-raw.json` for each brand — the `snapshot.cards[].body` field has ad copy, `snapshot.cards[].title` has headlines, `snapshot.cards[].cta_text` has CTAs
 3. Categorize the ad copy by messaging angle (see Messaging Analysis Framework below)
-4. For video ads where you want the voiceover, download the videos and MLX transcribe them:
+4. For video ads where you want the voiceover, download the videos and transcribe them:
    ```bash
-   python3 ~/.claude/tools/mlx-transcribe.py /path/to/brand-data/downloads/ --output /path/to/transcripts/
+   # Local transcription (requires Apple Silicon + MLX — see tools/mlx-transcribe.py)
+   python3 tools/mlx-transcribe.py /path/to/brand-data/downloads/ --output /path/to/transcripts/
+
+   # OR use Gemini transcription (works anywhere, requires API key)
+   node tools/gemini-api/gemini-api.js "Transcribe this video" --video /path/to/video.mp4
    ```
 5. Clean up media when done
 
 **This approach is free (no Gemini costs) and fast.** Use it for the niche-level mapping.
 
-### Deep analysis (for Huel-style full audits)
+### Deep analysis (for full audits)
 
 For deep competitive audits or when preparing a Tier 1 Strategy Sprint deliverable, run the full Gemini analysis:
 
@@ -133,12 +144,12 @@ Media files (images + videos) are the storage hog. After you've analyzed what yo
 
 **Clean one brand:**
 ```bash
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/cleanup.js --data ~/.claude/tools/ad-library/data/brand-slug
+node tools/ad-library/cleanup.js --data tools/ad-library/data/brand-slug
 ```
 
 **Clean all brands:**
 ```bash
-/opt/homebrew/bin/node ~/.claude/tools/ad-library/cleanup.js --data ~/.claude/tools/ad-library/data --all
+node tools/ad-library/cleanup.js --data tools/ad-library/data --all
 ```
 
 This deletes the `downloads/` folder (media) but keeps `ads-raw.json` (ad copy, structured data) and `analysis/` (Gemini analysis markdown files). Those are small and worth keeping for reference.
@@ -154,4 +165,5 @@ This deletes the `downloads/` folder (media) but keeps `ads-raw.json` (ad copy, 
 - For PVP work, `--scrape-only` mode is usually enough — the JSON has all the messaging data
 - Download media only for brands where you need visual/video analysis
 - MLX transcription of video voiceovers is free and local — use it instead of Gemini for messaging-focused work
+- If MLX isn't available (no Apple Silicon or no Pinokio), Gemini transcription works as a drop-in replacement
 - If any step gets interrupted, it's safe to re-run — scrape creates new data, download overwrites, analyze resumes
