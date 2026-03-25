@@ -12,61 +12,50 @@ cd creative-strategy-stack
 ./setup.sh
 ```
 
-The setup script handles everything: installs dependencies, copies skills into Claude Code, configures the Research Engine, and prompts for API keys.
+The setup script handles everything: checks for Node.js and Python (installs them if missing), installs all dependencies, copies skills and commands into your Claude Code config, wires up the Research Engine as an MCP server, and prompts you for API keys. After that, open the folder in Claude Code and the `CLAUDE.md` loads automatically with the full reference.
 
 ## What's Inside
 
-### AI Skills (7)
+### Research
 
-Structured workflows invoked from Claude Code with `/skill-name`:
+Two tools for gathering customer language — one deep, one fast.
 
-| Skill | What it does |
-|-------|-------------|
-| `statics-briefer` | Static ad briefs using TEEP stages + Three Selves + Emotional Zones |
-| `native-ad-creative` | Native ad headlines + image direction via direct response psychology |
-| `listicle-writer` | Research-driven listicle landing pages (9-gate workflow) |
-| `editorial-image-prompts` | Editorial-style image prompts that look like content, not ads |
-| `story-selling` | Meta ad scripts where the story earns the sale |
-| `critique` | Evaluate any creative work against a chosen skill/framework |
-| `gemini-api` | Google Gemini for text generation, image/video analysis, image generation |
+**Research Engine** — A 12-step Python pipeline that scrapes Reddit, extracts evidence, discovers themes, scores brand fit, and mines language patterns. Runs as an MCP server inside Claude Code. You tell it a brand and a research direction ("gut health for backyard chickens"), it comes back 7-25 minutes later with 20-40 structured insights, evidence counts, VoC quotes, and a language report showing how the audience actually talks. Uses your Claude Code session for auth — no separate API key.
 
-### Research Engine
+**Reddit Scraper (Lightweight)** — A single Node.js script that pulls posts and comments from specific Reddit threads or subreddits via Apify. Much faster, uses far fewer tokens, but gives you raw data instead of structured analysis. Use this when you already know which threads matter and just need the text.
 
-A 12-step Python pipeline that scrapes Reddit, extracts evidence, discovers themes, scores brand fit, and mines language patterns. Runs as an MCP server — use it directly from Claude Code, no separate commands needed.
+### Creative Skills
 
-- `create_brand` — Set up a new brand from a product info dump
-- `run_research_sprint` — Run Reddit research sprints (7-25 min each)
-- `check_sprint_status` — Monitor sprint progress
-- `list_brands` / `list_sprints` — Browse existing data
+Seven structured AI workflows, each invoked from Claude Code with `/skill-name`:
 
-**Auth:** Uses your Claude Code session — no separate API key needed.
+| Skill | When to use it |
+|-------|----------------|
+| `/statics-briefer` | Writing creative briefs for static ads. Uses three psychological frameworks simultaneously — see below. |
+| `/native-ad-creative` | Native advertising headlines + image direction. Direct response psychology with 7 angle types. |
+| `/listicle-writer` | Landing page listicles where each numbered point is a sales argument. 9-gate workflow from research to imagery. |
+| `/editorial-image-prompts` | Image generation prompts that produce editorial-quality visuals — images that look like magazine content, not ads. |
+| `/story-selling` | Meta ad scripts (UGC, testimonials) where the story earns the sale. Covers curiosity gaps, contrast, and product integration. |
+| `/critique` | Evaluate any creative output against a chosen skill or framework. Scores each dimension 1-10 with specific fixes. |
+| `/gemini-api` | Google Gemini for video analysis, image generation, image analysis, and text generation. |
 
-### Reddit Scraper (Lightweight)
+### Competitive Intelligence
 
-A faster, lower-token alternative to the full Research Engine. Use when you need to quickly pull posts and comments from specific Reddit threads or subreddits without running the full 12-step analysis pipeline. Requires an Apify token.
+| Tool | What it does |
+|------|-------------|
+| `/ad-library` | Batch scrape Meta Ad Library for 10-20 brands at once. Downloads media, optional Gemini visual analysis for full creative breakdowns. |
+| `/transcribe` | Transcribe video/audio — routes to local MLX (free, Apple Silicon) or Gemini API (any platform, detailed visual context). |
 
-### Commands (2)
+## Three Frameworks in Every Static Brief
 
-| Command | What it does |
-|---------|-------------|
-| `/ad-library` | Batch scrape Meta Ad Library for competitor creative, download media, optional Gemini visual analysis |
-| `/transcribe` | Route video/audio to local MLX (free, Apple Silicon) or Gemini API (any platform) |
+The `/statics-briefer` skill makes three simultaneous strategic decisions for each ad. These aren't separate tools — they work together to determine the tone, pressure, and emotional arc.
 
-### Backend Tools
+| Framework | What it decides | Example |
+|-----------|----------------|---------|
+| **TEEP** (Trigger, Exploration, Evaluation, Purchase) | Where the buyer is in their journey | Trigger = something just happened. Evaluation = she's comparing products. |
+| **Three Selves** (Actual, Ideal, Ought) | Which version of the buyer we're speaking to | Ought = "you should." Actual = "you're not wrong." Ideal = "the person who..." |
+| **Emotional Zones** (Valence x Intensity) | What emotional state the buyer is in, and where the ad takes them | Zone 3 (quiet frustration) → Zone 1 (calm relief) |
 
-| Tool | Purpose |
-|------|---------|
-| Ad Library suite | Scrape, download, analyze, batch process, cleanup Meta Ad Library data |
-| Gemini API wrapper | Universal Gemini interface (text, images, video, generation) |
-| MLX Transcribe | Free local video transcription (Apple Silicon only) |
-
-## Three Frameworks in Every Brief
-
-| Framework | What it decides |
-|-----------|----------------|
-| **TEEP** (Trigger, Exploration, Evaluation, Purchase) | Where the buyer is in their journey |
-| **Three Selves** (Actual, Ideal, Ought) | Which version of the buyer we're speaking to |
-| **Emotional Zones** (Valence x Intensity) | The emotional arc from current state to target state |
+The ratio of Selves and the emotional journey are deliberate strategic decisions per brief, not random choices. The skill guides you through this at each gate.
 
 ## Requirements
 
@@ -76,3 +65,12 @@ A faster, lower-token alternative to the full Research Engine. Use when you need
 - Google Gemini API key — [Get one here](https://aistudio.google.com/apikey)
 - Apify account — [Sign up here](https://apify.com/) (for Meta Ad Library + Reddit scraping)
 - (Optional) Apple Silicon Mac for free local MLX transcription
+
+## Roadmap
+
+This is a working system that's actively evolving. Known areas for improvement:
+
+- **`statics-briefer` needs updating** — The skill encodes an earlier version of the workflow. The frameworks (TEEP, Three Selves, Emotional Zones) are solid, but the gate flow and some execution details need to be brought in line with the latest process. If you're using it and something feels off, that's why.
+- **UGC briefing skill** — Story-selling covers the philosophy, but there's no dedicated skill yet for the full UGC creator package workflow (hooks, b-roll shot lists, emotional arc checks).
+- **Review scraping** — Currently manual. A structured skill or tool for pulling and organizing brand + competitor reviews would close the loop on the research side.
+- **Testing strategy skill** — The process for ranking angles by data strength and writing testing strategies is documented but not yet encoded as a skill.
