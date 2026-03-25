@@ -10,39 +10,45 @@ Use the Gemini API for tasks Claude can't do natively: analyzing videos, generat
 
 ## Tool Location
 
-```
-~/.claude/tools/gemini-api/gemini-api.js
+The Gemini API wrapper is at `tools/gemini-api/gemini-api.js` relative to the repo root.
+
+**First-time setup:**
+```bash
+cd tools/gemini-api && npm install
 ```
 
-All commands require: `export PATH="/opt/homebrew/bin:/usr/bin:$PATH"`
+Add your API key to `tools/gemini-api/.env`:
+```
+GEMINI_API_KEY=your_key_here
+```
 
 ## Commands
 
 ### Text generation
 ```bash
-export PATH="/opt/homebrew/bin:/usr/bin:$PATH" && node ~/.claude/tools/gemini-api/gemini-api.js "your prompt here"
+node tools/gemini-api/gemini-api.js "your prompt here"
 ```
 
 ### Image analysis
 ```bash
-export PATH="/opt/homebrew/bin:/usr/bin:$PATH" && node ~/.claude/tools/gemini-api/gemini-api.js "describe what you see" --image /path/to/image.jpg
+node tools/gemini-api/gemini-api.js "describe what you see" --image /path/to/image.jpg
 ```
 
 ### Video analysis
 ```bash
-export PATH="/opt/homebrew/bin:/usr/bin:$PATH" && node ~/.claude/tools/gemini-api/gemini-api.js "describe this video in detail including all text, speech, and visual elements" --video /path/to/video.mp4
+node tools/gemini-api/gemini-api.js "describe this video in detail including all text, speech, and visual elements" --video /path/to/video.mp4
 ```
 
 Supported video formats: .mp4, .mov, .avi, .webm
 
 ### Image generation (Nano Banana Pro)
 ```bash
-export PATH="/opt/homebrew/bin:/usr/bin:$PATH" && node ~/.claude/tools/gemini-api/gemini-api.js "a cat on a beach" --generate-image --output /path/to/output.png
+node tools/gemini-api/gemini-api.js "a cat on a beach" --generate-image --output /path/to/output.png
 ```
 
 ### Multiple image generation
 ```bash
-export PATH="/opt/homebrew/bin:/usr/bin:$PATH" && node ~/.claude/tools/gemini-api/gemini-api.js "product shot" --generate-image --count 3 --output-dir /path/to/dir
+node tools/gemini-api/gemini-api.js "product shot" --generate-image --count 3 --output-dir /path/to/dir
 ```
 
 ### JSON output
@@ -65,4 +71,4 @@ Add `--model model-name` to use a specific model. Defaults:
 - Always use absolute paths for files
 - For video analysis, the video is sent as base64 inline data — very large videos may hit API limits
 - Image generation saves to the specified output path or generates a timestamped filename in the current directory
-- The API key is already configured in `~/.claude/tools/gemini-api/.env`
+- Ensure your `GEMINI_API_KEY` is set in `tools/gemini-api/.env` before use

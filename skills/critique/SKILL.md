@@ -15,7 +15,7 @@ A meta-skill for evaluating work against any loaded skill or framework.
 
 Ask the user which skill or framework they want to use for the critique.
 
-Browse available skills (e.g., in `Skills/Copywriting/` or other skill folders) and present options, or let the user specify directly.
+Browse available skills (in `~/.claude/skills/` or the repo's `skills/` folder) and present options, or let the user specify directly.
 
 **Example prompt:**
 > "Which framework do you want me to critique this against? I can see [list available skills], or you can specify another."

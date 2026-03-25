@@ -1,7 +1,7 @@
 ---
 name: editorial-image-prompts
 description: Generates editorial-style image prompts that look like real content, not ads. Guides users through style selection and builds hyper-detailed prompts for Nano Banana Pro (Gemini). Use when the user mentions editorial images, editorial style images, native ad images, or wants to generate images that don't look like ads.
-allowed-tools: Skill(gemini-imagegen)
+allowed-tools: Skill(gemini-api)
 ---
 
 # Editorial Image Prompt Generator
@@ -40,7 +40,7 @@ When the user needs one image, follow this flow:
 3. Let the user pick
 4. Ask any clarifying questions about the specific scene
 5. Build the full prompt using the Prompt Architecture
-6. Hand off to `gemini-imagegen` for generation
+6. Hand off to `gemini-api` for generation
 
 ### Mode 2: Multi-Image from Brief
 
@@ -52,7 +52,7 @@ When the user has a brief, listicle, advertorial, or ad set:
 4. Present all recommendations at once so the user can review and adjust
 5. Ask clarifying questions for any image where you need more context
 6. Build all prompts
-7. Generate images sequentially using `gemini-imagegen`
+7. Generate images sequentially using `gemini-api`
 
 Always present style recommendations as suggestions the user can override.
 
@@ -289,5 +289,5 @@ For each image prompt you build, verify:
 - For comic illustrations, always brainstorm the visual metaphor with the user first
 - Match the prompt length to the complexity: quick mode for simple images, full architecture for detailed scenes
 - Recommend aspect ratio based on where the image will be placed
-- After building the prompt, hand off to `gemini-imagegen` for generation
-- If the user wants to refine, use `gemini-imagegen` multi-turn chat for iterative adjustment
+- After building the prompt, hand off to `gemini-api` for generation
+- If the user wants to refine, use `gemini-api` multi-turn chat for iterative adjustment

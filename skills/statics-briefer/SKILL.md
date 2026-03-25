@@ -105,7 +105,7 @@ You can provide VoC in any of these formats:
 If user requests "gap analysis" or "deep analysis":
 
 1. Read source playbooks selectively:
-   - `references/teep_model_course_playbook.md` (642 lines) — TEEP framework source
+   - `references/teep-model-course-playbook.md` (642 lines) — TEEP framework source
    - `references/valence_intensity_course_playbook.md` (434 lines) — Emotional zones source
    - `references/self_targeting_system_playbook.md` (560 lines) — Three selves source
 
@@ -668,7 +668,7 @@ CTA:
 - [Creative Brief System v8.1](references/creative_brief_system_v8.1_consolidated.md) — Your synthesized execution guide with tactical tools. Use this for all routine brief generation.
 
 **Source frameworks (1,636 lines total - load selectively):**
-- [TEEP Model Playbook](references/teep_model_course_playbook.md) — 642 lines. Funnel stage framework source.
+- [TEEP Model Playbook](references/teep-model-course-playbook.md) — 642 lines. Funnel stage framework source.
 - [Self-Targeting System Playbook](references/self_targeting_system_playbook.md) — 560 lines. Three selves framework source.
 - [Valence & Intensity Playbook](references/valence_intensity_course_playbook.md) — 434 lines. Emotional zones framework source.
 

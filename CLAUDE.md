@@ -8,24 +8,35 @@ Read `how-i-work.md` for the full philosophy and process walkthrough.
 
 ## Quick Setup
 
-### 1. Install the skills
+Run the setup script from the repo root — it handles everything:
 
-Copy the `skills/` folder into your Claude Code config:
+```bash
+./setup.sh
+```
+
+This will check for Node.js (install via Homebrew if missing), install npm dependencies, copy skills and commands into your Claude Code config, and prompt you for API keys.
+
+### Manual setup (if you prefer)
+
+<details>
+<summary>Click to expand step-by-step instructions</summary>
+
+#### 1. Prerequisites
+
+You need **Node.js** (v18+). Check with `node --version`. If not installed:
+- **macOS:** `brew install node` (install [Homebrew](https://brew.sh) first if needed)
+- **Linux:** `sudo apt install nodejs npm` or use [nvm](https://github.com/nvm-sh/nvm)
+- **Windows:** Download from [nodejs.org](https://nodejs.org/)
+
+#### 2. Install skills and commands
 
 ```bash
 mkdir -p ~/.claude/skills ~/.claude/commands
 cp -r skills/* ~/.claude/skills/
-```
-
-### 2. Install the commands
-
-Copy the `commands/` folder into your Claude Code config:
-
-```bash
 cp -r commands/* ~/.claude/commands/
 ```
 
-### 3. Set up API keys
+#### 3. Set up API keys
 
 ```bash
 cp .env.example tools/ad-library/.env
@@ -36,13 +47,13 @@ Then edit both `.env` files with your actual keys:
 - **GEMINI_API_KEY** — Get from Google AI Studio (https://aistudio.google.com/apikey)
 - **APIFY_TOKEN** — Get from Apify (https://apify.com/) — needed for Meta Ad Library scraping
 
-### 4. Install tool dependencies
+#### 4. Install tool dependencies
 
 ```bash
 cd tools/ad-library && npm install && cd ../gemini-api && npm install && cd ../..
 ```
 
-### 5. (Optional) Local Transcription (MLX)
+#### 5. (Optional) Local Transcription (MLX)
 
 Local transcription via `tools/mlx-transcribe.py` is free and fast but requires **macOS with Apple Silicon** (M1/M2/M3/M4).
 
@@ -53,6 +64,8 @@ Local transcription via `tools/mlx-transcribe.py` is free and fast but requires 
 brew install ffmpeg
 pip install mlx mlx-whisper numpy
 ```
+
+</details>
 
 **Don't have Apple Silicon?** No problem — use Gemini transcription instead. The `/transcribe` command will guide you to the right tool. Gemini transcription works on any platform with just an API key.
 
