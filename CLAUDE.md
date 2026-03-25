@@ -2,8 +2,6 @@
 
 This is a complete creative strategy system for DTC brands. It takes you from zero customer knowledge to a full pipeline of static ads, UGC briefs, listicles, and ongoing test batches — all grounded in real customer language.
 
-Read `how-i-work.md` for the full philosophy and process walkthrough.
-
 ---
 
 ## Quick Setup
@@ -99,6 +97,7 @@ pip install mlx mlx-whisper numpy
 | Ad Library suite | `tools/ad-library/` | Scrape, download, analyze, batch process, cleanup |
 | Gemini API wrapper | `tools/gemini-api/` | Universal Gemini interface (text, images, video, generation) |
 | MLX Transcribe | `tools/mlx-transcribe.py` | Local video transcription (Apple Silicon only, optional) |
+| Reddit Scraper | `tools/reddit-scraper.js` | Lightweight Reddit scraping — fast, low-token alternative to the full Research Engine |
 
 ### Research Engine (MCP server — available automatically in Claude Code)
 
@@ -122,7 +121,7 @@ See `research-engine/README.md` for full documentation.
 
 ## The Workflow
 
-The full process is documented in `how-i-work.md`. Here's the short version:
+Here's the workflow:
 
 1. **Research** — Scrape reviews (brand + competitors). Run Research Engine sprints on Reddit. Extract VoC, language patterns, emotional registers.
 2. **Context docs** — Write Brand Context + Product Context + Compliance Guidelines.
