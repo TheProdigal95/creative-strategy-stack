@@ -129,6 +129,27 @@ If automatic credential extraction fails, use the dedicated finder scripts:
 
 Run these if the main scraper cannot auto-detect credentials.
 
+### If the platform is unknown
+
+If `detect_platform()` returns `"unknown"`, do NOT stop. Build a custom scraper by reverse-engineering the site:
+
+1. **Intercept network requests.** Use Playwright to load the page with a request listener. Scroll to the reviews section and look for XHR/fetch calls to review APIs. Log every request domain and path — the review data endpoint is usually obvious (contains "review", "rating", "comment", etc.).
+
+2. **Inspect the DOM.** If no API calls are visible, the reviews may be server-rendered in the HTML. Look for structured review markup: `<div>` elements with star ratings, author names, dates, and review bodies. Check for `<script type="application/json">` or `<script type="application/ld+json">` blocks that contain review data as JSON.
+
+3. **Check for known widget patterns.** Some sites use lesser-known providers (Ryviu, Ali Reviews, Fera, Rivyo, Vitals, PowerReviews, Bazaarvoice, Reevoo). Search the page source for these names. If found, research their public API structure.
+
+4. **Write a scraper from scratch.** Based on what you find:
+   - If there's a JSON API: write an `httpx`-based paginated scraper (follow the same structure as the reference scripts).
+   - If reviews are in the HTML: write a Playwright-based scraper that loads pages, parses the DOM, and clicks "Load More" / "Next Page" until exhausted.
+   - If reviews are inside a `__NEXT_DATA__` or similar JSON blob: extract from the blob and paginate by URL params.
+
+5. **Output must match the standard schema.** Every custom scraper must output the same JSONL format defined above. Map whatever fields the site uses into the standard fields.
+
+6. **Save the working script.** Write it to the user's output directory as `scrape_reviews.py` so it can be rerun later.
+
+The goal is: any URL the user gives you should result in scraped reviews. Known platform or not.
+
 ---
 
 ## Step 3: Adapt the Script to the User's URL
